@@ -19,5 +19,19 @@ import pandaslib as pl
 st.title("UniBrow")
 st.caption("The Universal data browser")
 
-# TODO Write code here to complete the unibrow.py
+
+
+uploaded_file = st.file_uploader("Upload a file:", type=["csv", "xlsx", "json"])
+if uploaded_file is not None:
+    # Get the file name
+    file_name = uploaded_file.name
+    st.write(f"You uploaded: {file_name}")
+    
+    file_type = pl.get_file_extension(file_name)
+    df = pl.load_file(uploaded_file, file_type)
+    st.dataframe(df)
+    cols = pl.get_column_names(df)
+    selected_cols = st.multiselect("Select columns to display", cols, default=cols)
+    if selected_cols:
+        st.dataframe[selected_cols]
 

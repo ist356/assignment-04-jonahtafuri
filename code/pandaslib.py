@@ -60,12 +60,11 @@ def load_file(file_path: str, ext: str) -> pd.DataFrame:
     - when csv assume first row is header
     - when json assume record-oriented data
     '''
-    file_type = get_file_extension(file_path)
-    if file_type == 'csv':
+    if ext == 'csv':
         file = pd.read_csv(file_path, header=0)
-    elif file_type == 'json':
+    elif ext == 'json':
         file = pd.read_json(file_path, orient='records')
-    elif file_type == 'xlsx':
+    elif ext == 'xlsx':
         file = pd.read_excel(file_path)
     else:
         raise ValueError(f"unsupported file type {file_type}")
