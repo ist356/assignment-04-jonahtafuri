@@ -35,7 +35,7 @@ def get_unique_values(df : pd.DataFrame, column_name: str) -> list:
     Get a list of unique values of a column in a pandas dataframe
     '''
     col = df[column_name]
-    values = col.unique()
+    values = col.unique().tolist()
     return values 
 
 def get_file_extension(file_path : str) -> str:
@@ -67,7 +67,7 @@ def load_file(file_path: str, ext: str) -> pd.DataFrame:
     elif ext == 'xlsx':
         file = pd.read_excel(file_path)
     else:
-        raise ValueError(f"unsupported file type {file_type}")
+        raise ValueError(f"unsupported file type {ext}")
     
     return file
 
