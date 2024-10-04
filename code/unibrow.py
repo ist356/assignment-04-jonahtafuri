@@ -20,7 +20,6 @@ st.title("UniBrow")
 st.caption("The Universal data browser")
 
 
-
 uploaded_file = st.file_uploader("Upload a file:", type=["csv", "xlsx", "json"])
 if uploaded_file is not None:
     # Get the file name
@@ -29,9 +28,20 @@ if uploaded_file is not None:
     
     file_type = pl.get_file_extension(file_name)
     df = pl.load_file(uploaded_file, file_type)
-    st.dataframe(df)
     cols = pl.get_column_names(df)
     selected_cols = st.multiselect("Select columns to display", cols, default=cols)
-    if selected_cols:
-        st.dataframe[selected_cols]
+    final_df = df[selected_cols]
+    if st.toggle("Filter data"):
+        stcols = st.columns(3)
+        
+        text_cols = pl.get_columns_of_type(df, 'object')
+        filter_col = stcols[0].selectbox("Get values of: ", text_cols)
+        if filter_col:
+            vals = pl.get_unique_values(df, filter_col)
+            val = stcols[1].selectbox("Select value to filter: ", vals)
+            final_df = df[df[filter_col] == val][selected_cols]
+        else:
+            final_df = df[selected_cols]
+    st.dataframe(final_df)
+    st.dataframe(final_df.describe())
 

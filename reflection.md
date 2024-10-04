@@ -1,7 +1,7 @@
 # Reflection
 
-Student Name:  name
-Sudent Email:  email
+Student Name:  Jonah Tafuri
+Sudent Email:  jttafuri@syr.edu
 
 ## Instructions
 
@@ -22,4 +22,4 @@ Examples:
 **Best Reflection** "I learned when to use while vs for loops. While loops are for sentiel-controlled values (waiting for a condition to occur), vs for loops are for iterating over collections of fixed values."
 
 `--- Reflection Below This Line ---`
-
+My assignment went fairly smooth, but I had some difficulties with the streamlit portion. Creating pandaslib was a good opportunity to refamiliarize myself with data wrangling in python which I have been learning in a different class at the same time but it still does not feel as intuitive as R. For the get_column_of_type function i decided to store the column names and values in a dictionary since while I am not experienced with them I knew they would likely be an efficient way to store the data. I am confused by the line "filtered_dict = {key: value for key, value in my_dict.items() if value == numpy_type}". I understand it as iterating over the the values in the dictionary and only preserving them if they match the value "numpy_type". I admittedly got ChatGPT's assistance in writing that line and while I understand what it is doing I don't feel comfortable enough with it to be able to write it on my own. The trickiest thing with me in the Unibrow portion was getting the filters to work properly. I opted to have the df display automatically update with the column filters whereas the choice to filter by specific values was filtered with a button. I was unfamiliar with stcols[] and had to research it to understand that it puts widget side by side with the number in the brackets indicating to their position as if there is columns on the webpage.
